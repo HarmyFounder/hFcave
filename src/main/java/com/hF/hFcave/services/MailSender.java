@@ -31,19 +31,16 @@ public class MailSender {
         }
     });
 
-    public void send(String recipient, String text) throws MessagingException {
+    public void send(String recipientGmail, String text, String subject) throws MessagingException {
         MimeMessage message = new MimeMessage(session);
 
         message.setFrom(new InternetAddress(from));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        message.setSubject("hFcave Industry");
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientGmail));
+        message.setSubject("hFcave Industry: " + subject);
         message.setText(text);
 
         Transport.send(message);
 
     }
-
-
-
 
 }

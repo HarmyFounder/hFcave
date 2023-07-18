@@ -28,7 +28,7 @@ public class QuoteController {
     @PostMapping("/setQuotesSending")
     public void setQuoteNotifications(@AuthenticationPrincipal User user, @RequestParam int hour, int minute) throws IOException, MessagingException {
         String quote = quoteService.getQuote();
-        mailSender.send(user.getEmail(), quote, "Quote from hFcave");
+        mailSender.send(user.getEmail(), quote, "Quote from hFcave",hour, minute);
     }
 
 

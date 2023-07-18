@@ -7,6 +7,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sound.midi.MidiMessage;
+import java.time.LocalTime;
 import java.util.Properties;
 
 @Service
@@ -31,7 +32,7 @@ public class MailSender {
         }
     });
 
-    public void send(String recipientGmail, String text, String subject) throws MessagingException {
+    public void send(String recipientGmail, String text, String subject, int hour, int minute) throws MessagingException {
         MimeMessage message = new MimeMessage(session);
 
         message.setFrom(new InternetAddress(from));
@@ -39,8 +40,9 @@ public class MailSender {
         message.setSubject("hFcave Industry: " + subject);
         message.setText(text);
 
-        Transport.send(message);
-
+        if(LocalTime.now().getHour() == hour && LocalTime.now().getMinute() == minute && LocalTime.now().getSecond() == 1) {
+            Transport.send(message);
+        }
     }
 
 }

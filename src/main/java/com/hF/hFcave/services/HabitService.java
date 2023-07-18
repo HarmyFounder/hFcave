@@ -54,10 +54,8 @@ public class HabitService {
     }
 
     public void setNotifications(User user, int hour, int minute) throws MessagingException {
-        if (LocalTime.now().getHour() == hour && LocalTime.now().getMinute() == minute && LocalTime.now().getSecond() == 1) {
             for (Habit habit : user.getHabits()) {
-                mailSender.send(user.getEmail(), habit.getTittle() + " by tag: " + habit.getTag(), "Remember about your habits hFcave");
-            }
+                mailSender.send(user.getEmail(), habit.getTittle() + " by tag: " + habit.getTag(), "Remember about your habits hFcave", hour, minute);
         }
     }
 
